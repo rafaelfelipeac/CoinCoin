@@ -5,5 +5,6 @@ package br.com.rafaelfelipeac.keepcoin.model
  */
 
 class Money(){
+    var id: Long = 0
     var value: Float = 0.0f
 }

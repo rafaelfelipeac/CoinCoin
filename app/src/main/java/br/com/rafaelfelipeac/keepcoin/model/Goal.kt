@@ -5,6 +5,7 @@ package br.com.rafaelfelipeac.keepcoin.model
  */
 
 class Goal() {
+    var id: Long = 0
     var name: String = ""
     var value: Float = 0.0f
 }
