@@ -1,4 +1,4 @@
-package br.com.rafaelfelipeac.keepcoin
+package br.com.rafaelfelipeac.coincoin
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

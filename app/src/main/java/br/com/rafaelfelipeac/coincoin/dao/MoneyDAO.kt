@@ -1,11 +1,10 @@
-package br.com.rafaelfelipeac.keepcoin.dao
+package br.com.rafaelfelipeac.coincoin.dao
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import br.com.rafaelfelipeac.keepcoin.model.Goal
-import br.com.rafaelfelipeac.keepcoin.model.Money
+import br.com.rafaelfelipeac.coincoin.model.Money
 
 /**
  * Created by Rafael Felipe on 16/10/2017.

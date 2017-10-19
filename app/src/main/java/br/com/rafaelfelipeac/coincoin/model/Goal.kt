@@ -1,4 +1,4 @@
-package br.com.rafaelfelipeac.keepcoin.model
+package br.com.rafaelfelipeac.coincoin.model
 
 /**
  * Created by Rafael Felipe on 28/09/2017.

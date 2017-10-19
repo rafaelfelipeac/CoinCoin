@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.rafaelfelipeac.keepcoin.activities.MoneyFormActivity">
+    tools:context="br.com.rafaelfelipeac.coincoin.activities.MoneyFormActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

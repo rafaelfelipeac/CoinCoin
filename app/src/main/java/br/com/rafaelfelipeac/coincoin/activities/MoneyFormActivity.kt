@@ -1,12 +1,11 @@
-package br.com.rafaelfelipeac.keepcoin.activities
+package br.com.rafaelfelipeac.coincoin.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import br.com.rafaelfelipeac.keepcoin.R
-import br.com.rafaelfelipeac.keepcoin.dao.MoneyDAO
-import br.com.rafaelfelipeac.keepcoin.model.Money
+import br.com.rafaelfelipeac.coincoin.R
+import br.com.rafaelfelipeac.coincoin.dao.MoneyDAO
+import br.com.rafaelfelipeac.coincoin.model.Money
 import kotlinx.android.synthetic.main.activity_money_form.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class MoneyFormActivity : AppCompatActivity() {
 

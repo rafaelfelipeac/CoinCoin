@@ -1,4 +1,4 @@
-package br.com.rafaelfelipeac.keepcoin
+package br.com.rafaelfelipeac.coincoin
 
 import org.junit.Test
 
