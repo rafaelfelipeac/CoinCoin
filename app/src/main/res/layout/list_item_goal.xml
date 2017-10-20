@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_marginBottom="10dp"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:src="@color/colorAccent"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/jobImage"/>
+
+        <TextView
+            android:id="@+id/goalName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="120dp"
+            android:paddingTop="10dp"
+            android:text="Nome da meta"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/goalValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="120dp"
+            android:paddingTop="55dp"
+            android:text="R$ 1.000,00"
+            android:textSize="12dp"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

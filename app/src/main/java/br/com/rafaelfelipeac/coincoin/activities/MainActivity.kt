@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.dao.MoneyDAO
 import br.com.rafaelfelipeac.coincoin.fragments.FragmentA
+import br.com.rafaelfelipeac.coincoin.fragments.FragmentB
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_a.*
 
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
             }
             R.id.navigation_dashboard -> {
-
+                val manager = supportFragmentManager
+                manager.beginTransaction().replace(R.id.frame_principal, FragmentB()).commit()
             }
 //            R.id.navigation_notifications -> {
 //
