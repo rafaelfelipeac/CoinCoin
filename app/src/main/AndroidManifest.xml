@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MoneyFormActivity" />
-        <activity android:name=".activities.GoalFormActivity" />
+        <activity
+            android:name=".activities.MoneyFormActivity"
+            android:label="Salário"/>
+        <activity
+            android:name=".activities.GoalFormActivity"
+            android:label="Meta"/>
         <activity
             android:name="br.com.rafaelfelipeac.coincoin.activities.MainActivity"
             android:label="@string/app_name"

@@ -3,7 +3,6 @@ package br.com.rafaelfelipeac.coincoin.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,15 +13,13 @@ import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.GoalFormActivity
 import br.com.rafaelfelipeac.coincoin.adapter.CardViewGoalAdapter
 import br.com.rafaelfelipeac.coincoin.dao.GoalDAO
-import br.com.rafaelfelipeac.coincoin.interfaces.RecyclerViewClickPosition
 import br.com.rafaelfelipeac.coincoin.model.Goal
-import kotlinx.android.synthetic.main.fragment_b.*
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class FragmentB : Fragment() {
+class FragmentGoals : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var goals: List<Goal>
@@ -32,7 +29,7 @@ class FragmentB : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_b, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_goals, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerViewGoals)
 

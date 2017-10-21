@@ -2,38 +2,46 @@ package br.com.rafaelfelipeac.coincoin.fragments
 
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.MoneyFormActivity
 import br.com.rafaelfelipeac.coincoin.dao.MoneyDAO
-import kotlinx.android.synthetic.main.fragment_a.*
-import kotlinx.android.synthetic.main.fragment_a.view.*
+import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class FragmentA : Fragment() {
+class FragmentMain : Fragment() {
 
     var salary: Float = Float.MIN_VALUE
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater!!.inflate(R.layout.fragment_a, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_main, container, false)
 
         if(MoneyDAO(context).Read().size > 0)
             salary = MoneyDAO(context).Read().get(0).value
 
         view.button.setOnClickListener { view ->
-            val valor: Float = editText.text.toString().toFloat()
 
-            textView2.text = ((valor / salary) * 100).toString() + "%"
+            var valor: Float = if(!editText.text.toString().equals("")) editText.text.toString().toFloat() else 0.toFloat()
+
+            if(valor > 0) {
+                textView2.text = ((valor / salary) * 100).toString() + "%"
+                btnCalculateGoals.visibility = View.VISIBLE
+            }
         }
 
         view.btnNewSalary.setOnClickListener {view ->
@@ -41,8 +49,21 @@ class FragmentA : Fragment() {
             startActivity(intent)
         }
 
+        view.editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
 
-        // Inflate the layout for this fragment
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                btnCalculateGoals.visibility = View.INVISIBLE
+                textView2.text = ""
+            }
+        })
+
         return view
     }
 
@@ -58,7 +79,6 @@ class FragmentA : Fragment() {
 
         super.onResume()
     }
-
 }
 
 

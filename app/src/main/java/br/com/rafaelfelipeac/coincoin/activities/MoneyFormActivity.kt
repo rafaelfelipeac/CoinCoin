@@ -2,6 +2,7 @@ package br.com.rafaelfelipeac.coincoin.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.dao.MoneyDAO
 import br.com.rafaelfelipeac.coincoin.model.Money
@@ -12,6 +13,8 @@ class MoneyFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_money_form)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         formMoney_btnSave.setOnClickListener { view ->
             val dao = MoneyDAO(this)
@@ -28,5 +31,13 @@ class MoneyFormActivity : AppCompatActivity() {
 
             finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item?.itemId == android.R.id.home) {
+            finish()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
