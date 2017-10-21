@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import android.widget.LinearLayout
 
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.GoalFormActivity
@@ -15,55 +16,41 @@ import br.com.rafaelfelipeac.coincoin.adapter.CardViewGoalAdapter
 import br.com.rafaelfelipeac.coincoin.dao.GoalDAO
 import br.com.rafaelfelipeac.coincoin.interfaces.RecyclerViewClickPosition
 import br.com.rafaelfelipeac.coincoin.model.Goal
+import kotlinx.android.synthetic.main.fragment_b.*
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class FragmentB : Fragment(), RecyclerViewClickPosition {
+class FragmentB : Fragment() {
 
-    companion object {
-
-    }
-
+    lateinit var recyclerView: RecyclerView
     lateinit var goals: List<Goal>
     var goalDAO: GoalDAO? = null
-
-    var mAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null
-    var mLayoutManager: RecyclerView.LayoutManager? = null
-
-    lateinit var list: RecyclerView;
-
-    override fun getRecyclerViewAdapterPosition(position: Int) {
-        val goal = goals.get(position)
-    }
-
+    var viewFrag: View? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_b, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_b, container, false)
+
+        recyclerView = view.findViewById(R.id.recyclerViewGoals)
+
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+
+        goalDAO = GoalDAO(context)
+        goals = goalDAO!!.Read()
+
+        val adapter = CardViewGoalAdapter(goals)
+        recyclerView.adapter = adapter
+
+        return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
 
-
-
-        goalDAO = GoalDAO(context)
-        goals = goalDAO!!.Read()
-
-        mLayoutManager = LinearLayoutManager(context)
-        list.layoutManager = mLayoutManager
-
-        loadList()
-
         super.onCreate(savedInstanceState)
-    }
-
-    fun loadList() {
-        //mAdapter = CardViewGoalAdapter(goals)
-        list.adapter = mAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -82,4 +69,4 @@ class FragmentB : Fragment(), RecyclerViewClickPosition {
         return super.onOptionsItemSelected(item)
     }
 
-}// Required empty public constructor
+}

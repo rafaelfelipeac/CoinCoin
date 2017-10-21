@@ -13,47 +13,29 @@ import br.com.rafaelfelipeac.coincoin.model.Goal
  * Created by Rafael Felipe on 19/10/2017.
  */
 
-class CardViewGoalAdapter : RecyclerView.Adapter<CardViewGoalAdapter.ViewHolder> {
-    var goals: Array<Goal>
-    var mPositionInterface : RecyclerViewClickPosition? = null
-
-    var name: TextView? = null
-    var value: TextView? = null
-
-    constructor(goals : List<Goal>) {
-        this.goals = goals.toTypedArray()
-        //this.mPositionInterface = positionInterface
-    }
+class CardViewGoalAdapter(val goals: List<Goal>) : RecyclerView.Adapter<CardViewGoalAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        name?.text = goals[position].name
-        value?.text = goals[position].value.toString()
+        val goal: Goal = goals[position]
 
+        holder.name.text = goal.name
+        holder.value.text = goal.value.toString()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val itemLayoutView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_goal, null)
-
-        this.name = itemLayoutView.findViewById(R.id.goalName)
-        this.value = itemLayoutView.findViewById(R.id.goalValue)
-
-
         return ViewHolder(itemLayoutView)
     }
 
     override fun getItemCount(): Int {
-        return goals.count()
+        return goals.size
     }
 
-    inner class ViewHolder : RecyclerView.ViewHolder, View.OnClickListener {
+    class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
 
-        constructor(itemLayoutView: View) : super(itemLayoutView) {
-            itemLayoutView.setOnClickListener(this)
-        }
+        val name = itemLayoutView.findViewById<TextView>(R.id.goalName)
+        val value = itemLayoutView.findViewById<TextView>(R.id.goalValue)
 
-        override fun onClick(v: View) {
-            mPositionInterface?.getRecyclerViewAdapterPosition(this.layoutPosition)
-        }
     }
 
 
