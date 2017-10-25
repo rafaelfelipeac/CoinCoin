@@ -2,7 +2,6 @@ package br.com.rafaelfelipeac.coincoin.fragments
 
 
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.Editable
@@ -10,9 +9,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 
 import br.com.rafaelfelipeac.coincoin.R
+import br.com.rafaelfelipeac.coincoin.activities.MainActivity
 import br.com.rafaelfelipeac.coincoin.activities.MoneyFormActivity
 import br.com.rafaelfelipeac.coincoin.dao.MoneyDAO
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -41,6 +40,11 @@ class FragmentMain : Fragment() {
             if(valor > 0) {
                 textView2.text = ((valor / salary) * 100).toString() + "%"
                 btnCalculateGoals.visibility = View.VISIBLE
+                btnCalculateGoals.isClickable = true
+
+                btnCalculateGoals.setOnClickListener { view ->
+                    (activity as MainActivity).replaceForCalculatedGoals()
+                }
             }
         }
 

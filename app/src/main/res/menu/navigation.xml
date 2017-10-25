@@ -10,5 +10,4 @@
         android:id="@+id/navigation_dashboard"
         android:icon="@mipmap/ic_list_black_24dp"
         android:title="Metas" />
-
 </menu>

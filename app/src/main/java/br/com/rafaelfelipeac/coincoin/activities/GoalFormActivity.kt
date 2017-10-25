@@ -23,8 +23,6 @@ class GoalFormActivity : AppCompatActivity() {
             goal.name = formGoal_editTextName.text.toString()
             goal.value = formGoal_editTextValue.text.toString().toFloat()
 
-            val list = goalDAO.Read()
-
             goalDAO.Insert(goal)
 
             finish()
