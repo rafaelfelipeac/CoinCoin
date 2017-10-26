@@ -13,30 +13,40 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="60dp">
 
         <ImageView
             android:src="@color/colorAccent"
             android:layout_width="110dp"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:scaleType="centerCrop"
             android:id="@+id/percentualCalculatedGoals"/>
 
         <TextView
-            android:id="@+id/goalName"
+            android:id="@+id/goalCalculatedPercent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="98%"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/goalCalculatedName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="120dp"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:text="Nome da meta"
             android:textSize="18dp"/>
 
         <TextView
-            android:id="@+id/goalValue"
+            android:id="@+id/goalCalculatedValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="120dp"
-            android:paddingTop="55dp"
+            android:paddingTop="35dp"
             android:text="R$ 1.000,00"
             android:textSize="12dp"/>
     </RelativeLayout>

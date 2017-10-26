@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.MainActivity
+import br.com.rafaelfelipeac.coincoin.adapter.CardViewCalculatedGoalsAdapter
 import br.com.rafaelfelipeac.coincoin.adapter.CardViewGoalAdapter
 import br.com.rafaelfelipeac.coincoin.dao.GoalDAO
 import br.com.rafaelfelipeac.coincoin.model.Goal
@@ -19,6 +20,7 @@ class FragmentCalculatedGoals : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var goals: List<Goal>
     var goalDAO: GoalDAO? = null
+    var price: Double? = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,9 @@ class FragmentCalculatedGoals : Fragment() {
         goalDAO = GoalDAO(context)
         goals = goalDAO!!.Read()
 
-        val adapter = CardViewGoalAdapter(goals)
+        price = (activity as MainActivity).getPrice()
+
+        val adapter = CardViewCalculatedGoalsAdapter(goals, price!!)
         recyclerView.adapter = adapter
 
         return view

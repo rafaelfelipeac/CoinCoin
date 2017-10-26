@@ -6,15 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import br.com.rafaelfelipeac.coincoin.R
-
 import br.com.rafaelfelipeac.coincoin.model.Goal
 
-class CardViewCalculatedGoalsAdapter(private val goals: List<Goal>) : RecyclerView.Adapter<CardViewCalculatedGoalsAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_calculated_goals, parent, false)
-        return ViewHolder(view)
-    }
+class CardViewCalculatedGoalsAdapter(private val goals: List<Goal>, private val price: Double?) : RecyclerView.Adapter<CardViewCalculatedGoalsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -22,14 +16,21 @@ class CardViewCalculatedGoalsAdapter(private val goals: List<Goal>) : RecyclerVi
 
         holder.name.text = goal.name
         holder.value.text = goal.value.toString()
+        holder.percent.text = "%.4f".format(goal.calculation(price!!)) + "%"
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemLayoutView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_calculated_goals, null)
+        return ViewHolder(itemLayoutView)
     }
 
     override fun getItemCount(): Int {
         return goals.size
     }
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val name = mView.findViewById<TextView>(R.id.goalName)
-        val value = mView.findViewById<TextView>(R.id.goalValue)
+    class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
+        val name = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedName)
+        val value = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedValue)
+        val percent = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedPercent)
     }
 }

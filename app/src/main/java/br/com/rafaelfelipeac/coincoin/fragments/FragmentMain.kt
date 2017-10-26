@@ -35,10 +35,11 @@ class FragmentMain : Fragment() {
 
         view.button.setOnClickListener { view ->
 
-            var valor: Float = if(!editText.text.toString().equals("")) editText.text.toString().toFloat() else 0.toFloat()
+            var valor: Double = if(!editText.text.toString().equals("")) editText.text.toString().toDouble() else 0.toDouble()
 
             if(valor > 0) {
-                textView2.text = ((valor / salary) * 100).toString() + "%"
+                //textView2.text = ((valor / salary) * 100).toString() + "%"
+                (activity as MainActivity).setPrice(valor)
                 btnCalculateGoals.visibility = View.VISIBLE
                 btnCalculateGoals.isClickable = true
 

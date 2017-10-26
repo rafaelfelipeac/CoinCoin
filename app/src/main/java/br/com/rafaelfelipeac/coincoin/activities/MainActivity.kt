@@ -11,6 +11,9 @@ import br.com.rafaelfelipeac.coincoin.fragments.FragmentGoals
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var price : Double = 0.0
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -57,5 +60,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun setPrice(price: Double) {
+        this.price = price
+    }
+
+    fun getPrice(): Double {
+        return this.price
     }
 }
