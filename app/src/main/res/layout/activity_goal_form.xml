@@ -37,10 +37,13 @@
 
         <Button
             android:id="@+id/formGoal_btnSave"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Salvar"/>
+            android:layout_marginTop="15dp"
+            android:text="Salvar"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"/>
 
 
     </LinearLayout>

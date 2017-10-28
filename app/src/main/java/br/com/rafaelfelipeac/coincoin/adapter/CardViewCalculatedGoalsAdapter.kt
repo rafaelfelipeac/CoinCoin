@@ -15,8 +15,8 @@ class CardViewCalculatedGoalsAdapter(private val goals: List<Goal>, private val 
         val goal: Goal = goals[position]
 
         holder.name.text = goal.name
-        holder.value.text = goal.value.toString()
-        holder.percent.text = "%.4f".format(goal.calculation(price!!)) + "%"
+        holder.value.text = "R$ " + "%.2f".format(goal.value)
+        holder.percent.text = "%.2f".format(goal.calculation(price!!)) + "%"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,9 +28,9 @@ class CardViewCalculatedGoalsAdapter(private val goals: List<Goal>, private val 
         return goals.size
     }
 
-    class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
-        val name = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedName)
-        val value = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedValue)
-        val percent = itemLayoutView.findViewById<TextView>(R.id.goalCalculatedPercent)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name = view.findViewById<TextView>(R.id.goalCalculatedName)
+        val value = view.findViewById<TextView>(R.id.goalCalculatedValue)
+        val percent = view.findViewById<TextView>(R.id.goalCalculatedPercent)
     }
 }

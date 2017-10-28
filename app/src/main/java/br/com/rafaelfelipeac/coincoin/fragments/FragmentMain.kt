@@ -3,7 +3,9 @@ package br.com.rafaelfelipeac.coincoin.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -23,35 +25,28 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
  */
 class FragmentMain : Fragment() {
 
-    var salary: Float = Float.MIN_VALUE
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater!!.inflate(R.layout.fragment_main, container, false)
-
-        if(MoneyDAO(context).Read().size > 0)
-            salary = MoneyDAO(context).Read().get(0).value
-
         view.button.setOnClickListener { view ->
 
-            var valor: Double = if(!editText.text.toString().equals("")) editText.text.toString().toDouble() else 0.toDouble()
+            var value: Double = if(!editText.text.toString().equals("")) editText.text.toString().toDouble() else 0.toDouble()
 
-            if(valor > 0) {
-                //textView2.text = ((valor / salary) * 100).toString() + "%"
-                (activity as MainActivity).setPrice(valor)
+            if(value > 0) {
+                (activity as MainActivity).setPrice(value)
                 btnCalculateGoals.visibility = View.VISIBLE
                 btnCalculateGoals.isClickable = true
 
                 btnCalculateGoals.setOnClickListener { view ->
                     (activity as MainActivity).replaceForCalculatedGoals()
                 }
-            }
-        }
 
-        view.btnNewSalary.setOnClickListener {view ->
-            val intent = Intent(context, MoneyFormActivity::class.java)
-            startActivity(intent)
+                Snackbar.make(view, "Calculo realizado.", Snackbar.LENGTH_SHORT).show()
+            }
+            else {
+                Snackbar.make(view, "Valor inválido.", Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         view.editText.addTextChangedListener(object : TextWatcher {
@@ -73,15 +68,11 @@ class FragmentMain : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
-
-        if(MoneyDAO(context).Read().size > 0)
-            salary = MoneyDAO(context).Read().get(0).value
-
         super.onResume()
     }
 }
