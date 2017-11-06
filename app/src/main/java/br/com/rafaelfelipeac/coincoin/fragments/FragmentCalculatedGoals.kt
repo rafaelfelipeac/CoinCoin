@@ -61,4 +61,6 @@ class FragmentCalculatedGoals : Fragment() {
 
         return false
     }
+
+
 }

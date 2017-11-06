@@ -2,6 +2,7 @@ package br.com.rafaelfelipeac.coincoin.activities
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import br.com.rafaelfelipeac.coincoin.R
@@ -18,13 +19,13 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 val manager = supportFragmentManager
-                manager.beginTransaction().replace(R.id.frame_principal, FragmentMain()).commit()
+                manager.beginTransaction().replace(R.id.frame_principal, FragmentMain(), "MAIN").commit()
                 supportActionBar?.title = "CoinCoin"
                 true
             }
             R.id.navigation_dashboard -> {
                 val manager = supportFragmentManager
-                manager.beginTransaction().replace(R.id.frame_principal, FragmentGoals()).commit()
+                manager.beginTransaction().replace(R.id.frame_principal, FragmentGoals(), "GOALS").commit()
                 supportActionBar?.title = "Metas"
                 true
             }
@@ -44,13 +45,13 @@ class MainActivity : AppCompatActivity() {
 
     fun replaceForCalculatedGoals() {
         val manager = supportFragmentManager
-        manager.beginTransaction().replace(R.id.frame_principal, FragmentCalculatedGoals()).commit()
+        manager.beginTransaction().replace(R.id.frame_principal, FragmentCalculatedGoals(), "CALCULATEDGOALS").commit()
         supportActionBar?.title = "Metas calculadas"
     }
 
     fun replacForeMain() {
         val manager = supportFragmentManager
-        manager.beginTransaction().replace(R.id.frame_principal, FragmentMain()).commit()
+        manager.beginTransaction().replace(R.id.frame_principal, FragmentMain(), "MAIN").commit()
         supportActionBar?.title = "CoinCoin"
     }
 
@@ -60,6 +61,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        val fragmentGoals = supportFragmentManager.findFragmentByTag("GOALS")
+        val fragmentCGoals = supportFragmentManager.findFragmentByTag("CALCULATEDGOALS")
+        val fragmentMain = supportFragmentManager.findFragmentByTag("MAIN")
+
+        if((fragmentGoals == null && fragmentCGoals == null && fragmentMain == null) || fragmentMain != null)
+            super.onBackPressed()
+        else if(fragmentGoals != null || fragmentCGoals != null)
+            replacForeMain()
     }
 
     fun setPrice(price: Double) {
