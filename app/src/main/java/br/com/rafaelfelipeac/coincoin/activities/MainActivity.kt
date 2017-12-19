@@ -2,14 +2,14 @@ package br.com.rafaelfelipeac.coincoin.activities
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.fragments.FragmentCalculatedGoals
-import br.com.rafaelfelipeac.coincoin.fragments.FragmentMain
 import br.com.rafaelfelipeac.coincoin.fragments.FragmentGoals
+import br.com.rafaelfelipeac.coincoin.fragments.FragmentMain
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity() {
                 val manager = supportFragmentManager
                 manager.beginTransaction().replace(R.id.frame_principal, FragmentMain(), "MAIN").commit()
                 supportActionBar?.title = "CoinCoin"
-                true
+                return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
                 val manager = supportFragmentManager
                 manager.beginTransaction().replace(R.id.frame_principal, FragmentGoals(), "GOALS").commit()
                 supportActionBar?.title = "Metas"
-                true
+                return@OnNavigationItemSelectedListener true
             }
         }
         false
@@ -49,17 +49,15 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Metas calculadas"
     }
 
-    fun replacForeMain() {
+    fun replaceForMain() {
         val manager = supportFragmentManager
         manager.beginTransaction().replace(R.id.frame_principal, FragmentMain(), "MAIN").commit()
         supportActionBar?.title = "CoinCoin"
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == android.R.id.home) {
+        if(item?.itemId == android.R.id.home)
             return false
-        }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         if((fragmentGoals == null && fragmentCGoals == null && fragmentMain == null) || fragmentMain != null)
             super.onBackPressed()
         else if(fragmentGoals != null || fragmentCGoals != null)
-            replacForeMain()
+            replaceForMain()
     }
 
     fun setPrice(price: Double) {

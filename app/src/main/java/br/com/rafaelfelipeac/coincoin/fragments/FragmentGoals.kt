@@ -1,6 +1,5 @@
 package br.com.rafaelfelipeac.coincoin.fragments
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.LinearLayout
-
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.GoalFormActivity
 import br.com.rafaelfelipeac.coincoin.adapter.CardViewGoalAdapter
@@ -17,10 +15,6 @@ import br.com.rafaelfelipeac.coincoin.dao.GoalDAO
 import br.com.rafaelfelipeac.coincoin.interfaces.RecyclerViewClickPosition
 import br.com.rafaelfelipeac.coincoin.model.Goal
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class FragmentGoals : Fragment(), RecyclerViewClickPosition {
 
     lateinit var recyclerView: RecyclerView
@@ -62,11 +56,10 @@ class FragmentGoals : Fragment(), RecyclerViewClickPosition {
                 startActivity(intent)
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
 
-    fun loadGoalsList() {
+    private fun loadGoalsList() {
         goalDAO = GoalDAO(context)
         goals = goalDAO!!.Read()
 
@@ -75,8 +68,8 @@ class FragmentGoals : Fragment(), RecyclerViewClickPosition {
     }
 
     override fun getRecyclerViewAdapterPosition(position: Int) {
-        val intent: Intent = Intent(context, GoalFormActivity::class.java)
-        intent.putExtra("goal", goals.get(position))
+        val intent = Intent(context, GoalFormActivity::class.java)
+        intent.putExtra("goal", goals[position])
         startActivity(intent)
     }
 }

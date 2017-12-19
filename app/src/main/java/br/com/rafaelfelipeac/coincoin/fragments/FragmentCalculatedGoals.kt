@@ -7,13 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.LinearLayout
-
 import br.com.rafaelfelipeac.coincoin.R
 import br.com.rafaelfelipeac.coincoin.activities.MainActivity
 import br.com.rafaelfelipeac.coincoin.adapter.CardViewCalculatedGoalsAdapter
-import br.com.rafaelfelipeac.coincoin.adapter.CardViewGoalAdapter
 import br.com.rafaelfelipeac.coincoin.dao.GoalDAO
 import br.com.rafaelfelipeac.coincoin.model.Goal
+
 
 class FragmentCalculatedGoals : Fragment() {
 
@@ -49,18 +48,11 @@ class FragmentCalculatedGoals : Fragment() {
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item?.itemId == android.R.id.home) {
-            (activity as MainActivity).replacForeMain()
+            (activity as MainActivity).replaceForMain()
             return true
         }
-
         return false
     }
-
-
 }
